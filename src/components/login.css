@@ -1,0 +1,53 @@
+.title {
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    background: url("../assets/login-bkg.png") no-repeat fixed;
+    background-size: 100% 100%;
+}
+
+.login-area {
+
+    width: 221px;
+    height: 150px;
+    background-color: rgba(214, 207, 198, 50%);
+    margin-left: 70%;
+    margin-top: 10%;
+    padding: 10px;
+}
+
+#submit-div {
+    /* margin-left: 10%;
+    margin-right: 10%;
+    width: 80%; */
+    text-align: center;
+}
+
+#submit-btn {
+    width: 100%;
+    font-size: 15px;
+    margin: 0 auto;
+    background-color: red;
+    border: none;
+    border-radius: 5px;
+
+}
+
+#fgt-psw {
+    float: left;
+    font-size: 10px;
+    text-decoration: none;
+}
+
+#free-rgs {
+    float: right;
+    text-decoration: none;
+    font-size: 10px;
+}
