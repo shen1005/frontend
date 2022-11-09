@@ -1,8 +1,8 @@
 <!--搜索栏-->
 <template>
     <div id="ProductSearchBar">
-        <img src = "../../assets/pictures/search.jpeg" class="search_img"> </img>
-        <input placeholder="请输入关键词" v-model="keyword" class="search_input"></input>
+        <img src = "../../assets/pictures/search.jpeg" class="search_img">
+        <input placeholder="请输入关键词" v-model="keyword" class="search_input">
         <button v-on:click="searchClick" class="search_button"> 搜索 </button>
     </div>
 </template>

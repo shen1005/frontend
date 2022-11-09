@@ -26,6 +26,7 @@
 <!--      </div>-->
       <v-btn @click="toUser">高级用户查询</v-btn>
       <v-btn @click="toHome">首页</v-btn>
+      <v-btn @click="toProduct">商品</v-btn>
 
     </v-app-bar>
 
@@ -49,6 +50,9 @@ export default {
     },
     toHome () {
       this.$router.push('/')
+    },
+    toProduct () {
+      this.$router.push('/product')
     }
   }
 };

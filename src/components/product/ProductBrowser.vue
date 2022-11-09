@@ -15,7 +15,7 @@
     import SortButton from "./SortButton.vue"
     import PageButton from "./PageButton.vue"
     import ProductPage from "./ProductPage.vue"
-    import UserButton from "./UserButton"
+    //import UserButton from "./UserButton"
     export default {
         name: "ProductBrowser",
         data() {
@@ -50,7 +50,7 @@
             ProductPage,
             SortButton,
             PageButton,
-            UserButton
+            // UserButton
         }
     }
 </script>

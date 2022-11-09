@@ -8,7 +8,7 @@
         <button type="button" class="page_button" v-if="page < totalPageNum" @click="addPage(1)"> {{page+1}} </button> <!--下一页码-->
         <button type="button" class="page_button" v-if="page < totalPageNum - 1" @click="addPage(2)"> {{page+2}} </button> <!--下两页码-->
         <button type="button" class="page_button" v-if="page < totalPageNum - 2" @click="addPage(0)"> ... </button> <!--...页码-->
-        <button type="button" class="page_button" v-if="page < totalPageNum -3" @click="addPage(totalPageNum-page)"> {{totalPageNum}} </button> <!--最后页码-->    
+        <button type="button" class="page_button" v-if="page < totalPageNum -3" @click="addPage(totalPageNum-page)"> {{totalPageNum}} </button> <!--最后页码-->
     </span>
 </template>
 
@@ -27,7 +27,8 @@
                 console.log("加载页码 " + this.page)
             },
             addPage(num) {
-                this.page += num
+              // eslint-disable-next-line vue/no-mutating-props
+                this.page = this.page +  num
                 console.log("页码切换至 " + this.page)
                 this.$emit('change', this.page)
             }
