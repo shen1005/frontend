@@ -1,0 +1,27 @@
+
+/* 搜索图标 */
+.search_img { 
+    height: 30px;
+    width: 30px;
+}
+
+/* 搜索输入 */
+.search_input {
+    border-width: 2px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+/* 搜索按钮 */
+.search_button {
+    background-color: rgb(62, 177, 47);
+    border-color: rgb(25, 208, 25);
+    border-width: 2px;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 800;
+    color: white;
+    width: 70px;
+    cursor: pointer;
+}
+

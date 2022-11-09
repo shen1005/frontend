@@ -1,0 +1,59 @@
+/* 商品界面 */
+
+/* 商品图片 */
+.product_picture {
+    width: 250px;
+    height: 250px;
+}
+
+/* 价格 */
+.price {
+    color:red;
+    font-size: 30px;
+    font-weight: 800;
+}
+
+/* 购买人数 */
+.sales{
+    color: grey;
+    font-size: 10px;
+}
+
+/* 一件商品 */
+.product_border {
+    border-style: solid;
+    border-color:grey;
+    border-width: 2px;
+    display: inline-block;
+    background-color: rgb(227, 225, 225);
+    margin-right: 5px;
+}
+
+/* 商品介绍 */
+.product_introduction {
+    font-size: 15px;
+    color:black;
+    width: 250px;
+}
+
+/* 店铺链接 */
+.store_link {
+    font-size: 15px;
+    color: grey;
+}
+
+/* 购买按钮 */
+.buy_button {
+    background-color: rgb(220, 140, 29);
+    border-color: rgb(240, 206, 16);
+    border-width: 3px;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 800;
+    color: white;
+    position:relative;
+    left:70px;
+    width: 70px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}

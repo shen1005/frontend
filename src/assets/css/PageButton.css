@@ -1,0 +1,15 @@
+
+
+.page_button {
+    width: 35px;
+    height: 35px;
+    border-color: rgb(164, 162, 162);
+    border-width: 2px;
+    background-color: rgb(237, 233, 233);
+    border-radius: 5px;
+    text-size-adjust: 10px;
+    font-size: 10px;
+    font-weight:700;
+    text-align: center;
+    cursor:pointer;
+}
