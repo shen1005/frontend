@@ -1,5 +1,7 @@
 <template>
+  <div id="img">
   <div id="logIn">
+
 <!--  <head>-->
 <!--    <meta charset="UTF-8">-->
 <!--    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
@@ -22,6 +24,7 @@
     <span><a href="./register"  id="free-rgs">免费注册</a></span>
   </div>
 <!--  </body>-->
+    </div>
   </div>
 </template>
 
