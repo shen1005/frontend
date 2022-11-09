@@ -8,15 +8,15 @@ html {
     height: 100%;
 }
 
-body {
-    background: url("../assets/login-bkg.png") no-repeat fixed;
+#logIn {
+    background: url("../assets/login-bkg.png") ;
     background-size: 100% 100%;
 }
 
 .login-area {
 
     width: 221px;
-    height: 150px;
+    height: 200px;
     background-color: rgba(214, 207, 198, 50%);
     margin-left: 70%;
     margin-top: 10%;

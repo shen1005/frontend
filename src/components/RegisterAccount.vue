@@ -5,7 +5,7 @@
     <title>注册页面</title>
   </head>
 
-  <body >
+  <body id="reg_area">
   <p v-text=str> </p>
   <div class="rgs_layout" id="rgs">
     <div class="rgs_left">
