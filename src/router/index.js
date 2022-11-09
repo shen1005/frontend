@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import UserView from "@/views/UserView";
 import ProductView from "@/views/ProductView";
+import LogView from "@/views/LogView";
+import RegisterView from "@/views/RegisterView";
 
 Vue.use(VueRouter)
 
@@ -13,6 +15,11 @@ const routes = [
     component: HomeView
   },
   {
+    path: '/login',
+    name: 'login',
+    component: LogView
+  },
+  {
     path: '/product',
     name: 'product',
     component: ProductView
@@ -21,6 +28,11 @@ const routes = [
     path: '/user',
     name: 'user',
     component: UserView
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: RegisterView
   },
   {
     path: '/about',

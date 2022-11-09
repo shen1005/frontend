@@ -1,4 +1,5 @@
 <template>
+  <div>
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,11 +22,10 @@
     <span><a href="./register"  id="free-rgs">免费注册</a></span>
   </div>
   </body>
+  </div>
 </template>
 
 <script>
-import axios from 'axios'
-import qs from 'qs'
 
 export default {
   name: "LogIn",
@@ -45,30 +45,9 @@ export default {
       {
         // this.$router.replace('/Home');//如果输入的名字以及密码正确路由跳转至个人页面
       }
-    },
-    doSubmit: function () {
-      let params = {
-        usrName: this.usrName,
-        password: this.password
-      };
-      // var url = "http://localhost:8080/"
-      // axios.get(url, {
-      //   params: params
-      // }).then(function (response) {
-      //   console.log(response);
-      // }).catch(function (error) {
-      //   console.log(error)
-      // });
-      // var str = qs.stringify(params);
-      // axios.post(url, str
-      // ).then(function (response) {
-      //   console.log(response);
-      // }).catch(function (error) {
-      //   console.log(error);
-      // });
+    }
     }
   }
-}
 </script>
 
 <style scoped>
