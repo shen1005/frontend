@@ -1,5 +1,5 @@
 <template>
-  <div style="background-color: #69d2e8">
+  <div id="background">
     <div style="border-bottom-color: black;">
       <h1 style="padding-top: 50px"></h1>
       <v-text-field   label="搜索" hide-details style="width: 25%; float: right; border: black; padding-right: 50px; padding-top: 40px" v-model=search>px
@@ -12,7 +12,7 @@
       <v-avatar size=100>
         <h1 style="color: #000000"> {{name}}</h1>
       </v-avatar>
-      <span style="color: blue; padding-left: 30%; font-style: v-bind(); font-size: 25px " > {{introduce}}</span>
+      <span style="color: black; padding-left: 30%; font-style: v-bind(); font-size: 25px " > {{introduce}}</span>
     </div>
     <div>
       <v-data-table
@@ -30,9 +30,10 @@
 export default {
   data () {
     return {
+      ground: require('../assets/userBg.jpg'),
       search: '',
       name: 'admin',
-      introduce: '我是一个好人',
+      introduce: '订单列表',
       headers: [
         {
           text: '姓名',
@@ -121,3 +122,14 @@ export default {
   }
 }
 </script>
+
+<style>
+#background {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  background-size: 150% 100%;
+  background: url("../assets/userBg.jpg") no-repeat center 0;
+
+}
+</style>
