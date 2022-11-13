@@ -44,7 +44,7 @@ export default {
         { text: '实付金额', value: 'money' },
         { text: '时间', value: 'time' },
         { text: '购买物品', value: 'tradeName' },
-        { text: '商品链接', value: 'url' }
+        { text: '快递公司', value: 'url' }
       ],
       desserts: [
         {
