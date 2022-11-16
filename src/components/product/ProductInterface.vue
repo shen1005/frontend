@@ -17,7 +17,7 @@
 
         <div> 
             <a class = "store_link" :href="storeLink" > {{storeName}} </a>
-            <button type="button" class="buy_button" @click="buyClick"> 购买 </button>
+            <v-btn @click="buyClick" class="buy_button"> 购买 </v-btn>
         </div>
     </div>
 </template>

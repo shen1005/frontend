@@ -1,7 +1,7 @@
 <template>
     <div align="right">
         <button class="user_button"> 用户中心 </button>
-        <img :src="userImg" class="user_img"></img>
+        <img :src="userImg" class="user_img">
     </div>
 </template>
 

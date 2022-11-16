@@ -2,9 +2,9 @@
 <!--排序按钮-->
 <template>
     <span>
-        <button type="button" class="sort_button" v-on:click="comprehensiveClick">综合排序</button>
-        <button type="button" class="sort_button" v-on:click="salesClick">销量排序</button>
-        <button type="button" class="sort_button" v-on:click="priceClick">价格排序</button>
+        <v-btn class="sort_button" v-on:click="comprehensiveClick">综合排序</v-btn>
+        <v-btn class="sort_button" v-on:click="salesClick">销量排序</v-btn>
+        <v-btn type="button" class="sort_button" v-on:click="priceClick" >价格排序</v-btn>
     </span>
 </template>    
 

@@ -22,10 +22,10 @@
 /* 一件商品 */
 .product_border {
     border-style: solid;
-    border-color:grey;
-    border-width: 2px;
+    border-color: rgba(245, 242, 242, 0.66);
+    border-width: 3px;
     display: inline-block;
-    background-color: rgb(227, 225, 225);
+    background-color: rgba(245, 244, 244, 0.64);
     margin-right: 5px;
 }
 
@@ -44,16 +44,12 @@
 
 /* 购买按钮 */
 .buy_button {
-    background-color: rgb(220, 140, 29);
-    border-color: rgb(240, 206, 16);
-    border-width: 3px;
-    border-radius: 5px;
     font-size: 15px;
     font-weight: 800;
     color: white;
     position:relative;
-    left:70px;
-    width: 70px;
+    left:80px;
+    width: 50px;
     margin-bottom: 5px;
     cursor: pointer;
 }

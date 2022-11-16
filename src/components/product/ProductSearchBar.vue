@@ -3,7 +3,7 @@
     <div id="ProductSearchBar">
         <img src = "../../assets/pictures/search.jpeg" class="search_img">
         <input placeholder="请输入关键词" v-model="keyword" class="search_input">
-        <button v-on:click="searchClick" class="search_button"> 搜索 </button>
+        <v-btn dark @click="searchClick" class="search_button"> 搜索 </v-btn>
     </div>
 </template>
 
