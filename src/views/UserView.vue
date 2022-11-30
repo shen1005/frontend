@@ -27,8 +27,9 @@
 </template>
 
 <script>
+import Qs from 'qs'
 export default {
-  data () {
+  data() {
     return {
       ground: require('../assets/userBg.jpg'),
       search: '',
@@ -41,10 +42,10 @@ export default {
           sortable: false,
           value: 'name'
         },
-        { text: '实付金额', value: 'money' },
-        { text: '时间', value: 'time' },
-        { text: '购买物品', value: 'tradeName' },
-        { text: '快递公司', value: 'url' }
+        {text: '实付金额', value: 'money'},
+        {text: '时间', value: 'time'},
+        {text: '购买物品', value: 'tradeName'},
+        {text: '快递公司', value: 'url'}
       ],
       desserts: [
         {
@@ -119,8 +120,20 @@ export default {
         }
       ]
     }
-  }
+  },
+  methods: {
+    getData() {
+      this.$axios({
+        method: 'post',
+        url: 'search',
+        data: Qs.stringify({
+          keyword: '555'
+        })
+      })
+    }
+  },
 }
+
 </script>
 
 <style>
