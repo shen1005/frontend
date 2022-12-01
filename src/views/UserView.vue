@@ -45,80 +45,15 @@ export default {
         {text: '实付金额', value: 'money'},
         {text: '时间', value: 'time'},
         {text: '购买物品', value: 'tradeName'},
-        {text: '快递公司', value: 'url'}
+        {text: '详细信息', value: 'url'}
       ],
-      desserts: [
-        {
-          name: 'Frozen Yogurt',
-          money: '￥6.00',
-          time: '2019-01-01',
-          tradeName: '冰淇淋',
-          url: 'https://www.baidu.com'
-        },
-        {
-          name: 'Ice cream sandwich',
-          money: '￥6.00',
-          time: '2019-01-01',
-          tradeName: '冰淇淋',
-          url: 'https://www.baidu.com'
-        },
-        {
-          name: 'Eclair',
-          money: '￥6.00',
-          time: '2019-01-01',
-          tradeName: '冰淇淋',
-          url: 'https://www.baidu.com'
-        },
-        {
-          name: 'Cupcake',
-          money: '￥6.00',
-          time: '2019-01-01',
-          tradeName: '冰淇淋',
-          url: 'https://www.baidu.com'
-        },
-        {
-          name: 'Gingerbread',
-          money: '￥6.00',
-          time: '2019-01-01',
-          tradeName: '冰淇淋',
-          url: 'https://www.baidu.com'
-        },
-        {
-          name: 'Jelly bean',
-          money: '￥6.00',
-          time: '2019-01-01',
-          tradeName: '冰淇淋',
-          url: 'https://www.baidu.com'
-        },
-        {
-          name: 'Lollipop',
-          money: '￥6.00',
-          time: '2019-01-01',
-          tradeName: '冰淇淋',
-          url: 'https://www.baidu.com'
-        },
-        {
-          name: 'Honeycomb',
-          money: '￥6.00',
-          time: '2019-01-01',
-          tradeName: '冰淇淋',
-          url: 'https://www.baidu.com'
-        },
-        {
-          name: 'Donut',
-          money: '￥6.00',
-          time: '2019-01-01',
-          tradeName: '冰淇淋',
-          url: 'https://www.baidu.com'
-        },
-        {
-          name: 'KitKat',
-          money: '￥6.',
-          time: '2019-01-01',
-          tradeName: '冰淇淋',
-          url: 'https://www.baidu.com'
-        }
-      ]
+      desserts: [{
+        name: 'res.data.name',
+        money: '100',
+        time: '2020-12-12',
+        tradeName: '足力健',
+        url: 'https://zulijian.tmall.com/shop/view_shop.htm?spm=a230r.1.14.43.ff4072cdspiC5t&user_number_id=3287104402'
+      }]
     }
   },
   methods: {
@@ -129,9 +64,33 @@ export default {
         data: Qs.stringify({
           keyword: '555'
         })
-      })
+      });
     }
   },
+  created() {
+    this.$axios({
+      method: 'post',
+      url: 'InitOrder',
+      }).then(res => {
+        console.log(String(res.data.name));
+        this.desserts = [{
+          name: res.data.name,
+          money: '100',
+          time: '2020-12-12',
+          tradeName: '足力健',
+          url: 'https://zulijian.tmall.com/shop/view_shop.htm?spm=a230r.1.14.43.ff4072cdspiC5t&user_number_id=3287104402'
+        }]
+    }).catch(err => {
+      console.log(err);
+      this.desserts = [{
+        name: 'res.data3.name',
+        money: '100',
+        time: '2020-12-12',
+        tradeName: '足力健',
+        url: 'https://zulijian.tmall.com/shop/view_shop.htm?spm=a230r.1.14.43.ff4072cdspiC5t&user_number_id=3287104402'
+      }]
+    })
+  }
 }
 
 </script>
