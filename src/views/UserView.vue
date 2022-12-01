@@ -42,17 +42,17 @@ export default {
           sortable: false,
           value: 'name'
         },
-        {text: '实付金额', value: 'money'},
-        {text: '时间', value: 'time'},
-        {text: '购买物品', value: 'tradeName'},
-        {text: '详细信息', value: 'url'}
+        {text: '实付金额', value: 'money', align: 'start'},
+        {text: '时间', value: 'time', align: 'start'},
+        {text: '购买物品', value: 'tradeName', align: 'start'},
+        {text: '详细信息', value: 'url', align: 'start'},
       ],
       desserts: [{
         name: 'res.data.name',
         money: '100',
         time: '2020-12-12',
         tradeName: '足力健',
-        url: 'https://zulijian.tmall.com/shop/view_shop.htm?spm=a230r.1.14.43.ff4072cdspiC5t&user_number_id=3287104402'
+        url: 'https://zulijian.tmall.com/shop2'
       }]
     }
   },
@@ -72,14 +72,19 @@ export default {
       method: 'post',
       url: 'InitOrder',
       }).then(res => {
-        console.log(String(res.data.name));
-        this.desserts = [{
-          name: res.data.name,
-          money: '100',
-          time: '2020-12-12',
-          tradeName: '足力健',
-          url: 'https://zulijian.tmall.com/shop/view_shop.htm?spm=a230r.1.14.43.ff4072cdspiC5t&user_number_id=3287104402'
-        }]
+        //返回的是list
+        let i = 0;
+        this.desserts = [];
+        for (i = 0; i < res.data.length; i++) {
+          this.desserts.push({
+            name: res.data[i].name,
+            money: res.data[i].payPrice,
+            time: res.data[i].payTime,
+            tradeName: res.data[i].productName,
+            url: res.data[i].information
+          })
+        }
+
     }).catch(err => {
       console.log(err);
       this.desserts = [{
