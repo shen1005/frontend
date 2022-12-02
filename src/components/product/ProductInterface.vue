@@ -61,7 +61,6 @@
                   this.sales = res.data.sales
                   this.introduction = res.data.introduction
                   this.storeName = res.data.storeName
-                  this.storeLink = res.data.storeLink
                 }
                 else {
                   console.log("row: " + String(this.row) + " col: " + String(this.col) + " load product fail")

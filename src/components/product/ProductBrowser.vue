@@ -50,6 +50,9 @@
             SortButton,
             PageButton,
             // UserButton
+        },
+        mounted() {
+          this.changePage(1);
         }
     }
 </script>

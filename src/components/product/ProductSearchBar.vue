@@ -21,6 +21,18 @@
             searchClick() { // 搜索接口
                 console.log("search " + this.keyword)
                 this.$emit("keyword", this.keyword) // 给父组件传值
+                this.$axios({
+                  method:"get",
+                  url:"/searchProduct",
+                  params: {
+                    keyword: this.keyword
+                  }
+                }).then((res) => {
+                  if(res) {
+                    console.log("search " + this.keyword + " success")
+                  }
+                })
+                this.keyword = ""
             }
         }
     }
