@@ -1,9 +1,9 @@
 <template>
     <div>
-        <ProductLine v-if="rowNum > 0" :page="page" :row="0" :colNum="getColNum(0)" ref="line0"></ProductLine>
-        <ProductLine v-if="rowNum > 1" :page="page" :row="1" :colNum="getColNum(1)" ref="line1"></ProductLine>
-        <ProductLine v-if="rowNum > 2" :page="page" :row="2" :colNum="getColNum(2)" ref="line2"></ProductLine>
-        <ProductLine v-if="rowNum > 3" :page="page" :row="3" :colNum="getColNum(3)" ref="line3"></ProductLine>
+        <ProductLine v-if="rowNum > 0" :row="1" ref="line1"></ProductLine>
+        <ProductLine v-if="rowNum > 1" :row="2" ref="line2"></ProductLine>
+        <ProductLine v-if="rowNum > 2" :row="3" ref="line3"></ProductLine>
+        <ProductLine v-if="rowNum > 3" :row="4" ref="line4"></ProductLine>
     </div>
     
 </template>
@@ -12,24 +12,28 @@
     import ProductLine from "./ProductLine.vue"
     export default {
         name:"ProductPage",
-        props:["page","productNum"],
         data() {
             return {
-                rowNum: (this.productNum + 3) / 4
+                productNum: 20,
+                rowNum: parseInt((this.productNum + 4) / 5),
+                page: 1,
             }
         },
         methods: {
             getColNum(row) {
-                if(row == this.rowNum-1 && this.productNum % 5 != 0) {
-                    return this.productNum % 5;
-                }
-                return 5;
+              if(row < this.rowNum) return 5;
+              if(this.productNum % 5 === 0) return 5;
+              return this.productNum % 5;
             },
-            loadInterface() {
-                if(this.rowNum > 0) this.$refs.line0.loadInterface()
-                if(this.rowNum > 1) this.$refs.line1.loadInterface()
-                if(this.rowNum > 2) this.$refs.line2.loadInterface()
-                if(this.rowNum > 3) this.$refs.line3.loadInterface()
+            changePage(newPage, newProductNum) {
+                console.log("ProductPage change page to " + newPage)
+                this.page = newPage;
+                this.productNum = newProductNum;
+                this.rowNum = parseInt((this.productNum + 4) / 5);
+                if(this.rowNum > 0) this.$refs.line1.changePage(this.page, this.getColNum(1));
+                if(this.rowNum > 1) this.$refs.line2.changePage(this.page, this.getColNum(2));
+                if(this.rowNum > 2) this.$refs.line3.changePage(this.page, this.getColNum(3));
+                if(this.rowNum > 3) this.$refs.line4.changePage(this.page, this.getColNum(4));
             }
         },
         components: {

@@ -4,8 +4,8 @@
     <div>
         <ProductSearchBar></ProductSearchBar>
         <SortButton></SortButton>
-        <PageButton :totalPageNum="totalPageNum" :page="page" @change="handelChange"></PageButton>
-        <ProductPage :page="page" :productNum="getProductNum(page)" ref="page"></ProductPage>
+        <PageButton :totalPageNum="totalPageNum" :page="page" @change="changePage"></PageButton>
+        <ProductPage :page="page" :productNum="getProductNum(page)" ref="productPage"></ProductPage>
     </div>
 
 </template>
@@ -21,7 +21,7 @@
         data() {
             return {
                 totalProductNum: 1000,
-                page: 0
+                page: 1
             }
         },
         computed: {
@@ -31,18 +31,17 @@
         },
         methods: {
             getProductNum(pageNum) {
-                if(pageNum == this.totalPageNum-1 && this.totalProductNum % 20 != 0) {
+                if(pageNum === this.totalPageNum && this.totalProductNum % 20 !== 0) {
                     return this.totalPageNum % 20
                 }
                 return 20
             },
-            loadInterface() {
-                console.log("当前页面 " + String(this.page))
-                this.$refs.page.loadInterface()
-            },
-            handelChange(newPage) {
-                this.page = newPage
-                this.loadInterface()
+            changePage(newPage) {
+              console.log("ProductBrowser change page to " + newPage)
+              this.page = newPage
+              var newProductNum
+              newProductNum = this.getProductNum(newPage)
+              this.$refs.productPage.changePage(newPage, newProductNum)
             }
         },
         components: {

@@ -15,11 +15,11 @@
 <script>
     import "@/assets/css/PageButton.css"
     export default {
-        props: ['page','totalPageNum'],
         name:"PageButton",
         data() {
             return {
-
+              page:1,
+              totalPageNum: 50,
             }
         },
         methods: {
