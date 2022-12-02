@@ -2,7 +2,7 @@
   <div id="background">
     <div style="border-bottom-color: black;">
       <h1 style="padding-top: 50px"></h1>
-      <v-text-field   label="搜索" hide-details style="width: 25%; float: right; border: black; padding-right: 50px; padding-top: 40px" v-model=search>px
+      <v-text-field @compositionstart="flag = false" @keydown="checkKey" label="搜索" hide-details style="width: 25%; float: right; border: black; padding-right: 50px; padding-top: 40px" v-model="search">px
       </v-text-field>
       <!--          <h1 style="padding-top: 100px"></h1>-->
       <!--          <v-btn style="float: right;">搜索</v-btn>-->
@@ -31,6 +31,7 @@ import Qs from 'qs'
 export default {
   data() {
     return {
+      flag: true,
       ground: require('../assets/userBg.jpg'),
       search: '',
       name: 'admin',
@@ -65,6 +66,12 @@ export default {
           keyword: '555'
         })
       });
+    },
+    checkKey(e) {
+      console.log(e.keyCode);
+      if (e.keyCode === 13) {
+        this.flag = true;
+      }
     }
   },
   created() {
@@ -95,6 +102,22 @@ export default {
         url: 'https://zulijian.tmall.com/shop/view_shop.htm?spm=a230r.1.14.43.ff4072cdspiC5t&user_number_id=3287104402'
       }]
     })
+  },
+
+  watch: {
+    flag() {
+      console.log(this.search);
+      console.log(this.flag);
+      if (this.flag) {
+        this.$axios({
+          method: 'post',
+          url: 'search',
+          data: Qs.stringify({
+            keyword: this.search
+          })
+        });
+      }
+    }
   }
 }
 
