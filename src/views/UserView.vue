@@ -20,6 +20,7 @@
           :items="desserts"
           :items-per-page="5"
           class="elevation-1"
+          @click:row="select"
       ></v-data-table>
       <v-btn @click = "getData">获取数据</v-btn>
     </div>
@@ -72,6 +73,11 @@ export default {
       if (e.keyCode === 13) {
         this.flag = true;
       }
+    },
+    select(item, value = true, emit = true) {
+      console.log(item.name);
+      console.log(value);
+      console.log(emit);
     }
   },
   created() {
