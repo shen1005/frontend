@@ -8,6 +8,15 @@
       <!--          <v-btn style="float: right;">搜索</v-btn>-->
       <!--          <v-text-field  hide-details style="width: 25%; float: right; border: black"></v-text-field>-->
     </div>
+    <div v-if="dialog"  class="mask">
+      <div class="box">
+        <h2>是否取消删除该订单？</h2>
+        <p  style="padding-top: 50px"></p>
+          <v-btn @click="dialog = false">确定</v-btn>
+        <span style="padding-left: 100px">           </span>
+          <v-btn @click="dialog = false">取消</v-btn>
+      </div>
+    </div>
     <div style = " padding-left: 50px" >
       <v-avatar size=100>
         <h1 style="color: #000000"> {{name}}</h1>
@@ -22,7 +31,6 @@
           class="elevation-1"
           @click:row="select"
       ></v-data-table>
-      <v-btn @click = "getData">获取数据</v-btn>
     </div>
   </div>
 </template>
@@ -32,6 +40,7 @@ import Qs from 'qs'
 export default {
   data() {
     return {
+      dialog: false,
       flag: true,
       ground: require('../assets/userBg.jpg'),
       search: '',
@@ -78,6 +87,7 @@ export default {
       console.log(item.name);
       console.log(value);
       console.log(emit);
+      this.dialog = true;
     }
   },
   created() {
@@ -137,5 +147,23 @@ export default {
   background-size: 150% 100%;
   background: url("../assets/userBg.jpg") no-repeat center 0;
 
+}
+.mask{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.box{
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 8px;
+  width: 23%;
+  height: 25%;
 }
 </style>
