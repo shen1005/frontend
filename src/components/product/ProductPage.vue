@@ -1,9 +1,8 @@
 <template>
     <div>
-        <ProductLine v-if="rowNum > 0" :row="1" ref="line1"></ProductLine>
-        <ProductLine v-if="rowNum > 1" :row="2" ref="line2"></ProductLine>
-        <ProductLine v-if="rowNum > 2" :row="3" ref="line3"></ProductLine>
-        <ProductLine v-if="rowNum > 3" :row="4" ref="line4"></ProductLine>
+        <ProductLine v-show="rowNum > 0" :row="1" ref="line1"></ProductLine>
+        <ProductLine v-show="rowNum > 1" :row="2" ref="line2"></ProductLine>
+
     </div>
     
 </template>
@@ -35,8 +34,7 @@
                 this.productNum = newProductNum;
                 if(this.rowNum > 0) this.$refs.line1.changePage(this.page, this.getColNum(1));
                 if(this.rowNum > 1) this.$refs.line2.changePage(this.page, this.getColNum(2));
-                if(this.rowNum > 2) this.$refs.line3.changePage(this.page, this.getColNum(3));
-                if(this.rowNum > 3) this.$refs.line4.changePage(this.page, this.getColNum(4));
+
             }
         },
         components: {

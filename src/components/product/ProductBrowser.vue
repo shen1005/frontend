@@ -2,8 +2,8 @@
 
 <template>
     <div>
-        <ProductSearchBar></ProductSearchBar>
-        <SortButton></SortButton>
+        <ProductSearchBar @change="searchProduct"></ProductSearchBar>
+        <SortButton @change="sortProduct"></SortButton>
         <PageButton :totalPageNum="totalPageNum" :page="page" @change="changePage"></PageButton>
         <ProductPage :page="page" :productNum="getProductNum(page)" ref="productPage"></ProductPage>
     </div>
@@ -20,21 +20,18 @@
         name: "ProductBrowser",
         data() {
             return {
-                totalProductNum: 107,
-                page: 1
-            }
-        },
-        computed: {
-            totalPageNum: function() {
-              return parseInt((this.totalProductNum + 19) / 20)
+                totalProductNum: 1,
+                page: 1,
+                totalPageNum: 1,
             }
         },
         methods: {
             getProductNum(page) {
-                if(page === this.totalPageNum && this.totalProductNum % 20 !== 0) {
-                    return this.totalProductNum % 20
+                if(this.totalProductNum === 0) return 0
+                if(page === this.totalPageNum && this.totalProductNum % 10 !== 0) {
+                    return this.totalProductNum % 10
                 }
-                return 20
+                return 10
             },
             changePage(newPage) {
               console.log("ProductBrowser change page to " + newPage)
@@ -43,6 +40,36 @@
               var newProductNum
               newProductNum = this.getProductNum(newPage)
               this.$refs.productPage.changePage(newPage, newProductNum)
+            },
+            searchProduct(keyword) {
+              this.$axios({
+                method:"get",
+                url:"/searchProduct",
+                params: {
+                  keyword: keyword
+                }
+              }).then((res) => {
+                if(res) {
+                  console.log("search " + keyword + " for " + res.data + " products.")
+                  this.totalProductNum = res.data;
+                  this.totalPageNum = parseInt((this.totalProductNum + 9) / 10)
+                  this.page = 1;
+                  this.changePage(1);
+                }
+              });
+            },
+            sortProduct(key) {
+              this.$axios({
+                method:"get",
+                url:"/sortProductBy"+key,
+                params: {
+                }
+              }).then((res) => {
+                if(res) {
+                  this.page = 1;
+                  this.changePage(1);
+                }
+              });
             }
         },
         components: {
@@ -53,7 +80,7 @@
             // UserButton
         },
         mounted() {
-          this.changePage(1);
+          this.searchProduct("");
         }
     }
 </script>

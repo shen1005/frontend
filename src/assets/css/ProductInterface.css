@@ -11,6 +11,8 @@
     color:red;
     font-size: 30px;
     font-weight: 800;
+    display: inline-block;
+    width: 120px;
 }
 
 /* 购买人数 */
@@ -38,8 +40,10 @@
 
 /* 店铺链接 */
 .store_link {
+    display: inline-block;
     font-size: 15px;
     color: grey;
+    width: 160px;
 }
 
 /* 购买按钮 */
@@ -52,4 +56,19 @@
     width: 50px;
     margin-bottom: 5px;
     cursor: pointer;
+}
+
+.star {
+    position: relative;
+    left: 10px;
+    width:20px;
+    height:20px;
+}
+
+.starsNum {
+    font-weight: 800;
+    font-size: 15px;
+    color: #fa9c02;
+    position: relative;
+    left: 10px;
 }
