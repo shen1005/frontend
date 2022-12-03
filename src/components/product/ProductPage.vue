@@ -15,8 +15,12 @@
         data() {
             return {
                 productNum: 20,
-                rowNum: parseInt((this.productNum + 4) / 5),
                 page: 1,
+            }
+        },
+        computed: {
+            rowNum: function () {
+              return parseInt((this.productNum + 4) / 5)
             }
         },
         methods: {
@@ -29,7 +33,6 @@
                 console.log("ProductPage change page to " + newPage)
                 this.page = newPage;
                 this.productNum = newProductNum;
-                this.rowNum = parseInt((this.productNum + 4) / 5);
                 if(this.rowNum > 0) this.$refs.line1.changePage(this.page, this.getColNum(1));
                 if(this.rowNum > 1) this.$refs.line2.changePage(this.page, this.getColNum(2));
                 if(this.rowNum > 2) this.$refs.line3.changePage(this.page, this.getColNum(3));

@@ -20,24 +20,25 @@
         name: "ProductBrowser",
         data() {
             return {
-                totalProductNum: 1000,
+                totalProductNum: 107,
                 page: 1
             }
         },
         computed: {
-            totalPageNum:function () {
-                return parseInt((this.totalProductNum + 19) / 20)
+            totalPageNum: function() {
+              return parseInt((this.totalProductNum + 19) / 20)
             }
         },
         methods: {
-            getProductNum(pageNum) {
-                if(pageNum === this.totalPageNum && this.totalProductNum % 20 !== 0) {
-                    return this.totalPageNum % 20
+            getProductNum(page) {
+                if(page === this.totalPageNum && this.totalProductNum % 20 !== 0) {
+                    return this.totalProductNum % 20
                 }
                 return 20
             },
             changePage(newPage) {
               console.log("ProductBrowser change page to " + newPage)
+              console.log(this.totalPageNum)
               this.page = newPage
               var newProductNum
               newProductNum = this.getProductNum(newPage)
