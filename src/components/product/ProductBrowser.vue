@@ -4,7 +4,7 @@
     <div>
         <ProductSearchBar @change="searchProduct"></ProductSearchBar>
         <SortButton @change="sortProduct"></SortButton>
-        <PageButton :totalPageNum="totalPageNum" :page="page" @change="changePage"></PageButton>
+        <PageButton :totalPageNum="totalPageNum" @change="changePage"></PageButton>
         <ProductPage :page="page" :productNum="getProductNum(page)" ref="productPage"></ProductPage>
     </div>
 

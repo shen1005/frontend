@@ -16,10 +16,10 @@
     import "@/assets/css/PageButton.css"
     export default {
         name:"PageButton",
-        props:["page","totalPageNum"],
+        props:["totalPageNum"],
         data() {
             return {
-
+              page:1
             }
         },
         methods: {
