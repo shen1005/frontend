@@ -27,7 +27,7 @@
             </tr>
             <tr>
               <td class="td_left"><label for="email">Email</label></td>
-              <td class="td_right"><input type="text" name="email" id="email"></td>
+              <td class="td_right"><input type="text" name="email" id="email" v-model="mail"></td>
             </tr>
             <tr>
               <td class="td_left"><label for="name">姓名</label></td>
@@ -83,8 +83,9 @@
          method:"post",
          url:"/createAccount",
          data:{
-           usrName: '111',
-           password: '222'
+           usrName: this.usrName,
+           password: this.password,
+           email: this.mail
          }
        })
      }
