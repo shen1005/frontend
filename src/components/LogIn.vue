@@ -18,7 +18,7 @@
     密码：<input type="password" placeholder="请输入密码" v-model="password">
     <br>
     <br>
-    <div id="submit-div"><button type="submit" id="submit-btn">登录</button></div>
+    <div id="submit-div"><button type="submit" id="submit-btn" @click="handleLogIn">登录</button></div>
     <br>
     <span><a href="#" id="fgt-psw" @click="test">忘记密码</a></span>
     <span><a href="./register"  id="free-rgs">免费注册</a></span>
@@ -44,10 +44,15 @@ export default {
       alert("????")
     },
     handleLogIn: function () {
-      if(this.usrName===localStorage['userName'] && this.password===localStorage['password'])
-      {
-        // this.$router.replace('/Home');//如果输入的名字以及密码正确路由跳转至个人页面
-      }
+      console.log("handle login")
+      this.$axios({
+        method:"get",
+        url:"/login",
+        params:{
+          usrName:this.usrName,
+          password:this.password
+        }
+      })
     }
     }
   }

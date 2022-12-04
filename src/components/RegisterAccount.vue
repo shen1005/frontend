@@ -78,16 +78,15 @@
    },
    methods:{
      handleRgs: function () {
-       if (localStorage['usrName'] === this.usrName) {
-         alert("用户名已存在");
-       } else if (this.name === '') {
-         alert("用户名不能为空");
-       } else {
-         localStorage.setItem('usrName', this.usrName);
-         localStorage.setItem('password', this.password);
-         alert("注册成功");
-         this.$router.replace('/login');
-       }
+       console.log("register")
+       this.$axios({
+         method:"post",
+         url:"/createAccount",
+         data:{
+           usrName: '111',
+           password: '222'
+         }
+       })
      }
    }
  }
