@@ -2,7 +2,7 @@
   <div id="background">
     <div style="border-bottom-color: black;">
       <h1 style="padding-top: 50px"></h1>
-      <v-text-field @compositionstart="flag = false" @keydown="checkKey" label="搜索" hide-details style="width: 25%; float: right; border: black; padding-right: 50px; padding-top: 40px" v-model="search">px
+      <v-text-field @keydown="checkKey" label="搜索" hide-details style="width: 25%; float: right; border: black; padding-right: 50px; padding-top: 40px" v-model="search">px
       </v-text-field>
       <!--          <h1 style="padding-top: 100px"></h1>-->
       <!--          <v-btn style="float: right;">搜索</v-btn>-->
@@ -23,7 +23,7 @@
       </v-avatar>
       <span style="color: black; padding-left: 30%; font-style: v-bind(); font-size: 25px " > {{introduce}}</span>
     </div>
-    <div>
+    <div v-if="isManager">
       <v-data-table
           :headers="headers"
           :items="desserts"
@@ -32,14 +32,28 @@
           @click:row="select"
       ></v-data-table>
     </div>
+    <div v-if="isSeller">
+      <v-data-table
+          :headers="sellerHeaders"
+          :items="sellerDesserts"
+          :items-per-page="5"
+          class="elevation-1"
+      ></v-data-table>
+    </div>
+<!--    <v-btn @click="reInit" style="float: bottom; padding-right: 50px">刷新</v-btn>-->
   </div>
 </template>
 
 <script>
-import Qs from 'qs'
 export default {
   data() {
     return {
+      //是否是高级用户
+      isManager: false,
+      //是否是商家
+      isSeller: false,
+      //是否是普通的用户
+      isBuyer: false,
       dialog: false,
       flag: true,
       ground: require('../assets/userBg.jpg'),
@@ -64,23 +78,86 @@ export default {
         time: '2020-12-12',
         tradeName: '足力健',
         url: 'https://zulijian.tmall.com/shop2'
-      }]
+      }],
+      sellerHeaders: [
+        {
+          text: '姓名',
+          align: 'start',
+          sortable: false,
+          value: 'name'
+        },
+        {text: '商品名称', value: 'productName', align: 'start'},
+        {text: '商品价格', value: 'productPrice', align: 'start'},
+      ],
+      sellerDesserts: [
+
+      ]
     }
   },
   methods: {
     getData() {
       this.$axios({
         method: 'post',
-        url: 'search',
-        data: Qs.stringify({
-          keyword: '555'
-        })
+        url: 'InitUserPrority'
+      }).then(res => {
+        this.isManager = res.data.manager;
+        this.isSeller = res.data.seller;
+        this.isBuyer = res.data.buyer;
+        if (this.isManager) {
+          this.introduce = '订单列表';
+          this.$axios({
+            method: 'post',
+            url: 'InitOrder',
+          }).then(res => {
+            //返回的是list
+            let i = 0;
+            this.desserts = [];
+            for (i = 0; i < res.data.length; i++) {
+              this.desserts.push({
+                name: res.data[i].name,
+                money: res.data[i].payPrice,
+                time: res.data[i].payTime,
+                tradeName: res.data[i].productName,
+                url: res.data[i].information
+              })
+            }
+
+          }).catch(err => {
+            console.log(err);
+            this.desserts = [{
+              name: 'res.data3.name',
+              money: '100',
+              time: '2020-12-12',
+              tradeName: '足力健',
+              url: 'https://zulijian.tmall.com/shop/view_shop.htm?spm=a230r.1.14.43.ff4072cdspiC5t&user_number_id=3287104402'
+            }]
+          });
+        } else if (this.isSeller) {
+          this.introduce = '商品列表';
+          this.$axios({
+            method: 'post',
+            url: 'InitSellerOrder',
+          }).then(res => {
+            //返回的是list
+            let i = 0;
+            this.sellerDesserts = [];
+            for (i = 0; i < res.data.length; i++) {
+              this.sellerDesserts.push({
+                name: res.data[i].name,
+                productName: res.data[i].productName,
+                productPrice: res.data[i].price,
+              })
+            }
+          })
+        } else {
+          this.introduce = '购物评分表';
+        }
       });
     },
     checkKey(e) {
       console.log(e.keyCode);
       if (e.keyCode === 13) {
-        this.flag = true;
+        this.flag = !this.flag;
       }
     },
     select(item, value = true, emit = true) {
@@ -88,12 +165,11 @@ export default {
       console.log(value);
       console.log(emit);
       this.dialog = true;
-    }
-  },
-  created() {
-    this.$axios({
-      method: 'post',
-      url: 'InitOrder',
+    },
+    reInit() {
+      this.$axios({
+        method: 'post',
+        url: 'InitOrder',
       }).then(res => {
         //返回的是list
         let i = 0;
@@ -107,24 +183,69 @@ export default {
             url: res.data[i].information
           })
         }
-
-    }).catch(err => {
-      console.log(err);
-      this.desserts = [{
-        name: 'res.data3.name',
-        money: '100',
-        time: '2020-12-12',
-        tradeName: '足力健',
-        url: 'https://zulijian.tmall.com/shop/view_shop.htm?spm=a230r.1.14.43.ff4072cdspiC5t&user_number_id=3287104402'
-      }]
-    })
+      })
+    }
+  },
+  created() {
+    // this.$axios({
+    //   method: 'post',
+    //   url: 'InitUserPrority'
+    // }).then(res => {
+    //   this.isManager = res.data.manager;
+    //   console.log(this.isManager);
+    //   this.isSeller = res.data.seller;
+    //   this.isBuyer = res.data.buyer;
+    // });
+    // console.log(this.isManager);
+    this.getData();
+      // this.$axios({
+      //   method: 'post',
+      //   url: 'InitOrder',
+      // }).then(res => {
+      //   //返回的是list
+      //   let i = 0;
+      //   this.desserts = [];
+      //   for (i = 0; i < res.data.length; i++) {
+      //     this.desserts.push({
+      //       name: res.data[i].name,
+      //       money: res.data[i].payPrice,
+      //       time: res.data[i].payTime,
+      //       tradeName: res.data[i].productName,
+      //       url: res.data[i].information
+      //     })
+      //   }
+      //
+      // }).catch(err => {
+      //   console.log(err);
+      //   this.desserts = [{
+      //     name: 'res.data3.name',
+      //     money: '100',
+      //     time: '2020-12-12',
+      //     tradeName: '足力健',
+      //     url: 'https://zulijian.tmall.com/shop/view_shop.htm?spm=a230r.1.14.43.ff4072cdspiC5t&user_number_id=3287104402'
+      //   }]
+      // });
+      // this.$axios({
+      //   method: 'post',
+      //   url: 'InitSellerOrder',
+      // }).then(res => {
+      //   //返回的是list
+      //   let i = 0;
+      //   this.sellerDesserts = [];
+      //   for (i = 0; i < res.data.length; i++) {
+      //     this.sellerDesserts.push({
+      //       name: res.data[i].name,
+      //       productName: res.data[i].productName,
+      //       productPrice: res.data[i].price,
+      //     })
+      //   }
+      // })
   },
 
   watch: {
     flag() {
       console.log(this.search);
       console.log(this.flag);
-      if (this.flag) {
         this.$axios({
           method: 'post',
           url: 'search',
@@ -135,21 +256,22 @@ export default {
           )
         }).then(res => {
           console.log(res.data);
-          this.desserts = [];
-          let i = 0;
-          for (i = 0; i < res.data.length; i++) {
-            this.desserts.push({
-              name: res.data[i].name,
-              money: res.data[i].payPrice,
-              time: res.data[i].payTime,
-              tradeName: res.data[i].productName,
-              url: res.data[i].information
-            })
+          if (this.isManager) {
+            this.desserts = [];
+            let i = 0;
+            for (i = 0; i < res.data.length; i++) {
+              this.desserts.push({
+                name: res.data[i].name,
+                money: res.data[i].payPrice,
+                time: res.data[i].payTime,
+                tradeName: res.data[i].productName,
+                url: res.data[i].information
+              })
+            }
           }
         });
       }
     }
-  }
 }
 
 </script>
