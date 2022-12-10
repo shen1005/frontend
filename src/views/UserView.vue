@@ -128,9 +128,24 @@ export default {
         this.$axios({
           method: 'post',
           url: 'search',
-          data: Qs.stringify({
-            keyword: this.search
-          })
+          data: (
+              {
+                keyword: this.search
+              }
+          )
+        }).then(res => {
+          console.log(res.data);
+          this.desserts = [];
+          let i = 0;
+          for (i = 0; i < res.data.length; i++) {
+            this.desserts.push({
+              name: res.data[i].name,
+              money: res.data[i].payPrice,
+              time: res.data[i].payTime,
+              tradeName: res.data[i].productName,
+              url: res.data[i].information
+            })
+          }
         });
       }
     }
