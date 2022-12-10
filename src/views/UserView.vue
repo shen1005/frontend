@@ -40,6 +40,14 @@
           class="elevation-1"
       ></v-data-table>
     </div>
+    <div v-if="isBuyer">
+      <v-data-table
+          :headers="buyerHeaders"
+          :items="buyerDesserts"
+          :items-per-page="5"
+          class="elevation-1"
+      ></v-data-table>
+    </div>
 <!--    <v-btn @click="reInit" style="float: bottom; padding-right: 50px">刷新</v-btn>-->
   </div>
 </template>
@@ -91,7 +99,21 @@ export default {
       ],
       sellerDesserts: [
 
-      ]
+      ],
+      buyerHeaders: [
+        {
+          text: '姓名',
+          align: 'start',
+          sortable: false,
+          value: 'name'
+        },
+        {text: '商品名称', value: 'productName', align: 'start'},
+        {text: '购买时间', value: 'time', align: 'start'},
+        {text: '打星', value: 'star', align: 'start'},
+      ],
+      buyerDesserts: [
+
+      ],
     }
   },
   methods: {
@@ -151,6 +173,22 @@ export default {
           })
         } else {
           this.introduce = '购物评分表';
+          this.$axios({
+            method: 'post',
+            url: 'InitBuyerOrder',
+          }).then(res => {
+            //返回的是list
+            let i = 0;
+            this.buyerDesserts = [];
+            for (i = 0; i < res.data.length; i++) {
+              this.buyerDesserts.push({
+                name: res.data[i].name,
+                productName: res.data[i].productName,
+                time: res.data[i].payTime,
+                star: res.data[i].star,
+              })
+            }
+          })
         }
       });
     },
