@@ -12,7 +12,7 @@
       <div class="box">
         <h2>是否取消删除该订单？</h2>
         <p  style="padding-top: 50px"></p>
-          <v-btn @click="dialog = false">确定</v-btn>
+          <v-btn @click="deleteOrder">确定</v-btn>
         <span style="padding-left: 100px">           </span>
           <v-btn @click="dialog = false">取消</v-btn>
       </div>
@@ -56,6 +56,9 @@
 export default {
   data() {
     return {
+      preOrderUserName: "",
+      preOrderProductName: "",
+      preOrderTime: "",
       //是否是高级用户
       isManager: false,
       //是否是商家
@@ -199,10 +202,39 @@ export default {
       }
     },
     select(item, value = true, emit = true) {
-      console.log(item.name);
+      console.log(item.productName);
       console.log(value);
       console.log(emit);
+      this.preOrderUserName = item.name;
+      this.preOrderProductName = item.tradeName;
+      this.preOrderTime = item.time;
       this.dialog = true;
+    },
+    deleteOrder() {
+      this.$axios({
+        method: 'post',
+        url: 'deleteOrder',
+        data: (
+            {
+              name: this.preOrderUserName,
+              productName: this.preOrderProductName,
+              payTime: this.preOrderTime
+            }
+        )
+      }).then(res => {
+        let i = 0;
+        this.desserts = [];
+        for (i = 0; i < res.data.length; i++) {
+          this.desserts.push({
+            name: res.data[i].name,
+            money: res.data[i].payPrice,
+            time: res.data[i].payTime,
+            tradeName: res.data[i].productName,
+            url: res.data[i].information
+          })
+        }
+        this.dialog = false;
+      });
     },
     reInit() {
       this.$axios({
@@ -279,7 +311,6 @@ export default {
       //   }
       // })
   },
-
   watch: {
     flag() {
       console.log(this.search);
