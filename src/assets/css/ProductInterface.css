@@ -12,7 +12,20 @@
     font-size: 30px;
     font-weight: 800;
     display: inline-block;
-    width: 120px;
+}
+
+/* 活动中 */
+.inActivity {
+    color:red;
+    font-size:10px;
+    font-weight: 800;
+    display: inline-block;
+}
+
+/* 填充label */
+.blank {
+    display: inline-block;
+    width: 50px;
 }
 
 /* 购买人数 */

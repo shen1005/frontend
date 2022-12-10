@@ -8,9 +8,12 @@
 
         <div>
             <label class="price">￥{{price}}</label>
+            <label class = "inActivity" v-if="activity">(活动中)</label>
+            <label class="blank" v-if="!activity"></label>
             <label class = "sales"> {{sales}}人购买 </label>
             <img src="@/assets/pictures/star.png" class="star">
             <label class="starsNum">{{stars}}</label>
+
         </div>
             
         <div> 
@@ -25,7 +28,10 @@
 </template>
 
 <script>
+    import Vue from "vue"
     import "@/assets/css/ProductInterface.css"
+    import {MessageBox} from "element-ui"
+    Vue.prototype.$confirm = MessageBox.confirm
     export default {
         name:"ProductInterface",
         props:["row","col"],
@@ -40,7 +46,8 @@
                 expressName: "顺丰快递",
                 stars: 4.8,
                 productId: 1,
-                picture: "1.jpg"
+                picture: "1.jpg",
+                activity: false
             }
         },
         methods: {
@@ -67,6 +74,7 @@
                   this.expressName = res.data.expressName
                   this.productId = res.data.productId
                   this.picture= String(this.productId) + '.jpg'
+                  this.activity = res.data.activity
                 }
                 else {
                   console.log("row: " + String(this.row) + " col: " + String(this.col) + " load product fail")
