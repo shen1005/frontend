@@ -9,7 +9,7 @@
 /* 价格 */
 .price {
     color:red;
-    font-size: 30px;
+    font-size: 27px;
     font-weight: 800;
     display: inline-block;
 }
@@ -25,7 +25,7 @@
 /* 填充label */
 .blank {
     display: inline-block;
-    width: 50px;
+    width: 25px;
 }
 
 /* 购买人数 */
@@ -54,7 +54,7 @@
 /* 店铺链接 */
 .store_link {
     display: inline-block;
-    font-size: 15px;
+    font-size: 12px;
     color: grey;
     width: 160px;
 }

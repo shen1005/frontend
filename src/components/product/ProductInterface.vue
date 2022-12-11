@@ -3,7 +3,7 @@
 <template>
     <div class = "product_border">
         <div>
-            <img :src="require('../../assets/products/'+picture)"   class="product_picture">
+            <img :src=picture  class="product_picture">
         </div>
 
         <div>
@@ -17,7 +17,7 @@
         </div>
             
         <div> 
-            <p class = "product_introduction"> {{introduction}} </p>
+            <p class = "product_introduction"> {{title}} </p>
         </div>    
 
         <div> 
@@ -38,10 +38,9 @@
         data() {
             return {
                 page:1,
-                productName: "足力健老年鞋",
                 price:999,
                 sales: 9999,
-                introduction:"芝士足力健",
+                title:"芝士足力健",
                 storeName: "足力健旗舰店",
                 expressName: "顺丰快递",
                 stars: 4.8,
@@ -65,15 +64,14 @@
               }).then((res) => {
                 if(res) {
                   console.log("row: " + String(this.row) + " col: " + String(this.col) + " load product successfully")
-                  this.productName = res.data.productName
+                  this.title = res.data.title
+                  this.picture = res.data.picture
                   this.price = res.data.price
                   this.sales = res.data.sales
-                  this.introduction = res.data.introduction
                   this.storeName = res.data.storeName
                   this.stars = res.data.stars
                   this.expressName = res.data.expressName
                   this.productId = res.data.productId
-                  this.picture= String(this.productId) + '.jpg'
                   this.activity = res.data.activity
                 }
                 else {
