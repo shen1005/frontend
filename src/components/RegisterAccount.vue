@@ -87,6 +87,14 @@
            password: this.password,
            email: this.mail
          }
+       }).then((res) => {
+         if (res.data === -1) {
+           alert("该用户名已被注册，请更换用户名");
+         } else {
+           console.log(res);
+           alert("您的账户id为：" + res.data + "\n目前网站大促，已自动为您充值66666元");
+         }
+
        })
      }
    }
