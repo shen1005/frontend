@@ -24,6 +24,10 @@ html {
 
 }
 
+#kind {
+    font-size: 15px;
+}
+
 #img {
 
     position:fixed;
@@ -44,7 +48,7 @@ html {
 
 .login-area {
 
-    width: 221px;
+    width: 260px;
     height: 200px;
     background-color: rgba(214, 207, 198, 50%);
     margin-left: 70%;

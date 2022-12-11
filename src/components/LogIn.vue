@@ -12,7 +12,17 @@
   <div class="title">网上超市</div>
 
   <div class="login-area">
-    账号：<input type="text" placeholder="请输入账号" v-model="usrName">
+
+
+    <div id="kind">
+      类型：
+    <input type="radio" name="kind" value="user" v-model="kind" >用户
+    <input type="radio" name="kind" value="store"  v-model="kind">商户
+    <input type="radio" name="kind" value="admin" v-model="kind">超级管理员
+    </div>
+    <br>
+
+    账号：<input type="text" placeholder="请输入账号" v-model="id">
     <br>
     <br>
     密码：<input type="password" placeholder="请输入密码" v-model="password">
@@ -34,8 +44,9 @@ export default {
   name: "LogIn",
   data: function() {
     return{
-      usrName: "",
-      password: ""
+      id: "",
+      password: "",
+      kind:""
     }
 
   },
@@ -44,15 +55,61 @@ export default {
       alert("????")
     },
     handleLogIn: function () {
-      console.log("handle login")
-      this.$axios({
-        method:"get",
-        url:"/login",
-        params:{
-          usrName:this.usrName,
-          password:this.password
-        }
-      })
+
+      if (this.kind === "user") {
+        console.log(this.kind)
+        this.$axios({
+          method:"get",
+          url:"/loginUser",
+          params:{
+            id:this.id,
+            password:this.password
+          }
+        }).then((res) => {
+          if (res.data === 1) {
+            alert("1")
+
+          } else if (res.data === 0) {
+            alert("账号或密码错误，请重新输入")
+          }
+        })
+      } else if (this.kind === "store") {
+        console.log(this.kind)
+
+        this.$axios({
+          method:"get",
+          url:"/loginStore",
+          params:{
+            id:this.id,
+            password:this.password
+          }
+        }).then((res) => {
+          if (res.data === 1) {
+            alert("1")
+          } else if (res.data === 0) {
+            alert("账号或密码错误，请重新输入")
+          }
+        })
+      } else if (this.kind === "admin") {
+        console.log(this.kind)
+
+        this.$axios({
+          method:"get",
+          url:"/loginAdmin",
+          params:{
+            id:this.id,
+            password:this.password
+          }
+        }).then((res) => {
+          if (res.data === 1) {
+            alert("1")
+          } else if (res.data === 0) {
+            alert("账号或密码错误，请重新输入")
+          }
+        })
+      }
+
+
     }
     }
   }

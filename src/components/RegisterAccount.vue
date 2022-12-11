@@ -16,7 +16,15 @@
     <div class="rgs_center">
       <div class="rgs_form">
         <form action="#" method="post">
+
           <table>
+
+            <tr>
+              <td class="td_left"><label>账户类型</label> </td>
+              <td class="td_right"><input type="radio" name="kind" value="user" v-model="kind">用户
+                <input type="radio" name="kind" value="store"  v-model="kind">商户</td>
+            </tr>
+
             <tr>
               <td class="td_left"><lable for="username">用户名</lable></td>
               <td class="td_right"><input type="text" name="username" id="username" v-model="usrName"></td>
@@ -29,19 +37,19 @@
               <td class="td_left"><label for="email">Email</label></td>
               <td class="td_right"><input type="text" name="email" id="email" v-model="mail"></td>
             </tr>
-            <tr>
-              <td class="td_left"><label for="name">姓名</label></td>
-              <td class="td_right"><input type="text" name="name" id="name"></td>
-            </tr>
-            <tr>
-              <td class="td_left"><label>性别</label> </td>
-              <td class="td_right"><input type="radio" name="gender" value="male">男
-                <input type="radio" name="gender" value="female">女</td>
-            </tr>
-            <tr>
-              <td class="td_left"><lable for="birthday">出生日期</lable></td>
-              <td class="td_right"><input type="date" name="birthday" id="birthday"></td>
-            </tr>
+<!--            <tr>-->
+<!--              <td class="td_left"><label for="name">姓名</label></td>-->
+<!--              <td class="td_right"><input type="text" name="name" id="name"></td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--              <td class="td_left"><label>性别</label> </td>-->
+<!--              <td class="td_right"><input type="radio" name="gender" value="male">男-->
+<!--                <input type="radio" name="gender" value="female">女</td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--              <td class="td_left"><lable for="birthday">出生日期</lable></td>-->
+<!--              <td class="td_right"><input type="date" name="birthday" id="birthday"></td>-->
+<!--            </tr>-->
             <tr>
               <td class="td_left"><label for="checkcode">验证码</label> </td>
               <td class="td_right"><input type="text" name="checkcode" id="checkcode">
@@ -73,29 +81,57 @@
        usrName:"",
        password:"",
        mail:"",
-       tel:""
+       tel:"",
+       kind:""
      };
    },
    methods:{
      handleRgs: function () {
-       console.log("register")
-       this.$axios({
-         method:"post",
-         url:"/createAccount",
-         data:{
-           usrName: this.usrName,
-           password: this.password,
-           email: this.mail
-         }
-       }).then((res) => {
-         if (res.data === -1) {
-           alert("该用户名已被注册，请更换用户名");
-         } else {
-           console.log(res);
-           alert("您的账户id为：" + res.data + "\n目前网站大促，已自动为您充值66666元");
-         }
 
-       })
+       let reg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*?[#?!@$%^&*-\\.]).{8,}$/;
+       if (!reg.test(this.password)) {
+         alert("密码必须8位以上，且包含数字、大小写字母、特殊字符")
+         return
+       }
+
+       if (this.kind === "user") {
+         console.log("register user")
+         this.$axios({
+           method:"post",
+           url:"/createAccount",
+           data:{
+             usrName: this.usrName,
+             password: this.password,
+             email: this.mail
+           }
+         }).then((res) => {
+           if (res.data === -1) {
+             alert("该用户名已被注册，请更换用户名");
+           } else {
+             console.log(res);
+             alert("您的用户id为：" + res.data + "\n目前网站大促，已自动为您充值66666元");
+           }
+         })
+       } else if (this.kind === "store") {
+         console.log("register store")
+         this.$axios({
+           method:"post",
+           url:"createStore",
+           data:{
+             usrName: this.usrName,
+             password: this.password,
+             email: this.mail
+           }
+         }).then((res) => {
+           if (res.data === -1) {
+             alert("该商户名已被注册，请更换用户名");
+           } else {
+             console.log(res);
+             alert("您的商户id为：" + res.data + "\n目前网站大促，已自动为您充值888888元");
+           }
+         })
+       }
+
      }
    }
  }
