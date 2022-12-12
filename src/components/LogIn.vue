@@ -67,15 +67,13 @@ export default {
           }
         }).then((res) => {
           if (res.data === 1) {
-            alert("1")
-
+            location.href="/user"
           } else if (res.data === 0) {
             alert("账号或密码错误，请重新输入")
           }
         })
       } else if (this.kind === "store") {
         console.log(this.kind)
-
         this.$axios({
           method:"get",
           url:"/loginStore",
@@ -85,14 +83,13 @@ export default {
           }
         }).then((res) => {
           if (res.data === 1) {
-            alert("1")
+            location.href="/user"
           } else if (res.data === 0) {
             alert("账号或密码错误，请重新输入")
           }
         })
       } else if (this.kind === "admin") {
         console.log(this.kind)
-
         this.$axios({
           method:"get",
           url:"/loginAdmin",
@@ -102,14 +99,12 @@ export default {
           }
         }).then((res) => {
           if (res.data === 1) {
-            alert("1")
+            location.href="/user"
           } else if (res.data === 0) {
             alert("账号或密码错误，请重新输入")
           }
         })
       }
-
-
     }
     }
   }
