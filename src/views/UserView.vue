@@ -128,6 +128,7 @@ export default {
         this.isManager = res.data.manager;
         this.isSeller = res.data.seller;
         this.isBuyer = res.data.buyer;
+        this.name = res.data.userId;
         if (this.isManager) {
           this.introduce = '订单列表';
           this.$axios({
