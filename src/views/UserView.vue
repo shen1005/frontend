@@ -48,7 +48,11 @@
           class="elevation-1"
       ></v-data-table>
     </div>
-<!--    <v-btn @click="reInit" style="float: bottom; padding-right: 50px">刷新</v-btn>-->
+    <!--下载文件-->
+    <v-btn style="float: right">
+    <download-excel v-if="isManager"   :data="desserts"    :fields ="json_fields"    name = "订单列表.xls" style="float: right">   导出Excel</download-excel>
+    <!--    <v-btn @click="reInit" style="float: bottom; padding-right: 50px">刷新</v-btn>-->
+    </v-btn>
   </div>
 </template>
 
@@ -83,6 +87,13 @@ export default {
         {text: '购买物品', value: 'tradeName', align: 'start'},
         {text: '详细信息', value: 'url', align: 'start'},
       ],
+      json_fields: {
+        '姓名': 'name',
+        '实付金额': 'money',
+        '时间': 'time',
+        '购买物品': 'tradeName',
+        '详细信息': 'url',
+      },
       desserts: [{
         name: 'res.data.name',
         money: '100',
@@ -191,6 +202,7 @@ export default {
         }
       });
     },
+
     checkKey(e) {
       console.log(e.keyCode);
       if (e.keyCode === 13) {
