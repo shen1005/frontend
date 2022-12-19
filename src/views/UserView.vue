@@ -91,14 +91,9 @@ export default {
         url: 'https://zulijian.tmall.com/shop2'
       }],
       sellerHeaders: [
-        {
-          text: '姓名',
-          align: 'start',
-          sortable: false,
-          value: 'name'
-        },
         {text: '商品名称', value: 'productName', align: 'start'},
         {text: '商品价格', value: 'productPrice', align: 'start'},
+        {text: '商品销量', value: 'productSales', align: 'start'},
       ],
       sellerDesserts: [
 
@@ -169,9 +164,9 @@ export default {
             this.sellerDesserts = [];
             for (i = 0; i < res.data.length; i++) {
               this.sellerDesserts.push({
-                name: res.data[i].name,
                 productName: res.data[i].productName,
                 productPrice: res.data[i].price,
+                productSales: res.data[i].sales
               })
             }
           })
@@ -336,6 +331,27 @@ export default {
                 time: res.data[i].payTime,
                 tradeName: res.data[i].productName,
                 url: res.data[i].information
+              })
+            }
+          } else if (this.isBuyer) {
+            let i = 0;
+            this.buyerDesserts = [];
+            for (i = 0; i < res.data.length; i++) {
+              this.buyerDesserts.push({
+                name: res.data[i].name,
+                productName: res.data[i].productName,
+                time: res.data[i].payTime,
+                star: res.data[i].star,
+              })
+            }
+          } else if (this.isSeller) {
+            let i = 0;
+            this.sellerDesserts = [];
+            for (i = 0; i < res.data.length; i++) {
+              this.sellerDesserts.push({
+                productName: res.data[i].productName,
+                productPrice: res.data[i].price,
+                productSales: res.data[i].sales
               })
             }
           }
