@@ -5,10 +5,10 @@
       color="primary"
       dark
     >
-      <v-btn @click="toHome">首页</v-btn>
-      <v-btn @click="toProduct">商品</v-btn>
-      <v-btn @click="toLog">登录</v-btn>
-      <v-btn @click="toUser">信息浏览</v-btn>
+      <v-btn @click="toHome" style="width: 25%">首页</v-btn>
+      <v-btn @click="toLog" style="width: 25%">登录</v-btn>
+      <v-btn @click="toProduct" style="width: 25%">商品</v-btn>
+      <v-btn @click="toUser" style="width: 25%">信息浏览</v-btn>
 
     </v-app-bar>
 
