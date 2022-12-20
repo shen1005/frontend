@@ -24,3 +24,42 @@
     left: 20px;
 }
 
+.reptile_button {
+    font-size: 12px;
+    font-weight: 800;
+    color: white;
+    width: 120px;
+    height: 30px;
+    cursor: pointer;
+    position: relative;
+    left: 40px;
+}
+
+.text_area {
+    font-size: 20px;
+    font-weight: 400;
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 5px;
+    border-color: #9d9c9c;
+    background-color: #ffffff;
+    margin-top:10px;
+    margin-bottom: 30px;
+}
+
+.text_inform {
+    font-size: 23px;
+    font-weight: 800;
+    color: black;
+}
+
+.start_reptile_button {
+    font-size: 17px;
+    font-weight: 900;
+    color: black;
+    width: 100px;
+    height: 30px;
+    cursor: pointer;
+    margin-left: 20px;
+}
+

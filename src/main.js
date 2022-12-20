@@ -10,7 +10,10 @@ Vue.prototype.$axios = axios
 axios.defaults.baseURL = 'http://localhost:8443/api'
 Vue.config.productionTip = false
 Vue.use(axios,VueAxios);
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 
+Vue.use(ElementUI);
 
 new Vue({
   router,
