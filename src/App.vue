@@ -5,11 +5,10 @@
       color="primary"
       dark
     >
-
-      <v-btn @click="toUser">高级用户查询</v-btn>
       <v-btn @click="toHome">首页</v-btn>
       <v-btn @click="toProduct">商品</v-btn>
       <v-btn @click="toLog">登录</v-btn>
+      <v-btn @click="toUser">信息浏览</v-btn>
 
     </v-app-bar>
 
