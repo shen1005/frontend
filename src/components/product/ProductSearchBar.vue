@@ -10,7 +10,7 @@
         <div>
           <h1 style="color: black; text-align: center">自动获取数据</h1>
           <p class="text_inform">爬取信息输入</p>
-          <textarea cols="110" rows="6" placeholder="请输入要爬取的商品类别+页码（如 鞋子 3）" class="text_area" v-model="goods"></textarea>
+          <textarea cols="110" rows="6" placeholder="请输入要爬取的商品类别+页数（如 鞋子 3）" class="text_area" v-model="goods"></textarea>
           <p class="text_inform">cookie信息输入</p>
           <p>由于淘宝的爬取拦截限制，需要您输入cookie的相关信息</p>
           <textarea cols="110" rows="15" placeholder="请输入cookie相关信息" class="text_area" v-model="header"></textarea>

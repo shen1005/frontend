@@ -93,6 +93,9 @@
                         this.sales++
                         window.alert("购买成功！")
                       }
+                      else if(res.data == -2) {
+                        window.alert("购买失败！请使用普通用户账号购买商品！")
+                      }
                       else {
                         window.alert("余额不足，购买失败！")
                       }
