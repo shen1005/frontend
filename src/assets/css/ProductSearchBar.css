@@ -35,6 +35,17 @@
     left: 40px;
 }
 
+.statistic_button {
+    font-size: 12px;
+    font-weight: 800;
+    color: white;
+    width: 120px;
+    height: 30px;
+    cursor: pointer;
+    position: relative;
+    left: 60px;
+}
+
 .text_area {
     font-size: 20px;
     font-weight: 400;
