@@ -30,7 +30,7 @@
     <br>
     <div id="submit-div"><button type="submit" id="submit-btn" @click="handleLogIn">登录</button></div>
     <br>
-    <span><a href="#" id="fgt-psw" @click="test">忘记密码</a></span>
+    <span><a href="./forget" id="fgt-psw" @click="test">忘记密码</a></span>
     <span><a href="./register"  id="free-rgs">免费注册</a></span>
   </div>
 <!--  </body>-->
@@ -51,9 +51,6 @@ export default {
 
   },
   methods: {
-    test: function () {
-      alert("????")
-    },
     handleLogIn: function () {
 
       if (this.kind === "user") {

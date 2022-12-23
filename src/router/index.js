@@ -5,7 +5,7 @@ import UserView from "@/views/UserView";
 import ProductView from "@/views/ProductView";
 import LogView from "@/views/LogView";
 import RegisterView from "@/views/RegisterView";
-
+import ForgetView from "@/views/ForgetView";
 Vue.use(VueRouter)
 
 const routes = [
@@ -13,6 +13,11 @@ const routes = [
     path: '/',
     name: 'logView',
     component: LogView
+  },
+  {
+    path: '/forget',
+    name: 'forget',
+    component: ForgetView
   },
   {
     path: '/login',
