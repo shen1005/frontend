@@ -52,8 +52,8 @@
 <!--            </tr>-->
             <tr>
               <td class="td_left"><label for="checkcode">验证码</label> </td>
-              <td class="td_right"><input type="text" name="checkcode" id="checkcode">
-                <img id="img_check" src="../assets/checkcode.jpg" width="140"> </td>
+              <td class="td_right"><input type="text" name="checkcode" id="checkcode" v-model="checkcode">
+                <img id="img_check" src="../assets/checkcode-7364.jpg" width="140"> </td>
             </tr>
             <!--                        <tr>-->
             <!--                            <td colspan="3" id="sub_td"><input type="submit" name="sub_btn" id="sub_btn" value="注册"></td>-->
@@ -82,7 +82,8 @@
        password:"",
        mail:"",
        tel:"",
-       kind:""
+       kind:"",
+       checkcode:""
      };
    },
    methods:{
@@ -91,6 +92,10 @@
        let reg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*?[#?!@$%^&*-\\.]).{8,}$/;
        if (!reg.test(this.password)) {
          alert("密码必须8位以上，且包含数字、大小写字母、特殊字符")
+         return
+       }
+       if (this.checkcode !== "7364") {
+         alert("验证码错误，请重新输入")
          return
        }
 

@@ -4,6 +4,11 @@
     <div class="main">
       <h1 class="reset">Reset</h1>
       <div class="content">
+        账户类型：
+        <input type="radio" name="kind" value="user" v-model="kind"> 用户
+        <input type="radio" name="kind" value="store" v-model="kind"> 商户
+        <br>
+        <br>
         <input type="text" class="name" placeholder="请输入id" v-model="id"><br>
         <input type="text" class="password1" placeholder="请输入用户名" v-model="userName"><br>
         <input type="password" class="password2" placeholder="请输入密码" v-model="password"><br>
@@ -19,6 +24,7 @@ export default {
   name: "ForgetPassword",
   data: function () {
     return {
+      kind: "",
       id: "",
       userName: "",
       password: ""
@@ -36,6 +42,7 @@ export default {
         method:"post",
         url:"modifyPassword",
         data:{
+          kind:this.kind,
           id:this.id,
           userName:this.userName,
           password:this.password
