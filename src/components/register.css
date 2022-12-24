@@ -121,3 +121,17 @@ html {
     margin: 0 auto;
     font-size: 20px;
 }
+
+.code {
+    background-image:url(../assets/checkcode-7364.jpg);
+    font-family:Arial,宋体;
+    font-style:italic;
+    color: #1f2bb6;
+    border:0;
+    padding:2px 3px;
+    letter-spacing:3px;
+    font-weight:bolder;
+}
+.unchanged {
+    border:0;
+}
