@@ -17,6 +17,18 @@
           <v-btn @click="dialog = false">取消</v-btn>
       </div>
     </div>
+    <div v-if="userDialog"  class="mask">
+      <div class="box2">
+        <h2 style="padding-left: 30%">评分</h2>
+        <p style="padding-top: 25px"></p>
+        <v-btn @click="userComment(1)">1</v-btn>
+        <v-btn @click="userComment(2)">2</v-btn>
+        <v-btn @click="userComment(3)">3</v-btn>
+        <v-btn @click="userComment(4)">4</v-btn>
+        <v-btn @click="userComment(5)">5</v-btn>
+        <v-btn @click="userDialog = false">取消</v-btn>
+      </div>
+    </div>
     <div style = " padding-left: 50px" >
       <v-avatar size=100>
         <h1 style="color: #000000"> {{name}}</h1>
@@ -46,10 +58,11 @@
           :items="buyerDesserts"
           :items-per-page="5"
           class="elevation-1"
+          @click:row="userSelect"
       ></v-data-table>
     </div>
     <!--下载文件-->
-    <v-btn style="float: right">
+    <v-btn style="float: right" v-if="isManager">
     <download-excel v-if="isManager"   :data="desserts"    :fields ="json_fields"    name = "订单列表.xls" style="float: right">   导出Excel</download-excel>
     <!--    <v-btn @click="reInit" style="float: bottom; padding-right: 50px">刷新</v-btn>-->
     </v-btn>
@@ -60,6 +73,7 @@
 export default {
   data() {
     return {
+      userDialog: false,
       preOrderUserName: "",
       preOrderProductName: "",
       preOrderTime: "",
@@ -195,7 +209,7 @@ export default {
                 name: res.data[i].name,
                 productName: res.data[i].productName,
                 time: res.data[i].payTime,
-                star: res.data[i].star,
+                star: (res.data[i].star === -1) ? '未评分' : res.data[i].star
               })
             }
           })
@@ -218,6 +232,38 @@ export default {
       this.preOrderTime = item.time;
       this.dialog = true;
     },
+    userSelect(item, value = true, emit = true) {
+      console.log(item.productName);
+      console.log(value);
+      console.log(emit);
+      this.preOrderProductName = item.productName;
+      this.preOrderTime = item.time;
+      this.userDialog = true;
+    },
+    userComment(rank) {
+      this.userDialog = false;
+      this.$axios({
+        method: 'post',
+        url: 'userComment',
+        data: {
+          name: this.name,
+          productName: this.preOrderProductName,
+          payTime: this.preOrderTime,
+          star: rank
+        }
+      }).then(res => {
+        let i = 0;
+        this.buyerDesserts = [];
+        for (i = 0; i < res.data.length; i++) {
+          this.buyerDesserts.push({
+            name: res.data[i].name,
+            productName: res.data[i].productName,
+            time: res.data[i].payTime,
+            star: (res.data[i].star === -1) ? '未评分' : res.data[i].star
+          })
+        }}).catch(err => {
+        console.log(err);
+      });},
     deleteOrder() {
       this.$axios({
         method: 'post',
@@ -399,6 +445,13 @@ export default {
   padding: 40px;
   border-radius: 8px;
   width: 23%;
-  height: 25%;
+  height: 23%;
+}
+.box2{
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 8px;
+  width: 32%;
+  height: 30%;
 }
 </style>
