@@ -2,7 +2,7 @@
 <template>
     <div id="ProductSearchBar">
         <img src = "../../assets/pictures/search.jpeg" class="search_img">
-        <input placeholder="请输入关键词" v-model="keyword" class="search_input">
+      <input placeholder="请输入关键词" v-model="keyword" class="search_input">
         <v-btn dark @click="searchClick" class="search_button"> 搜索 </v-btn>
         <v-btn dark @click="reptileClick" class="reptile_button"> 自动爬取数据 </v-btn>
         <v-btn dark @click="getProductStatistics" class="statistic_button" href="/statistics.pdf" download="statistics.pdf"> 导出为统计图</v-btn>
