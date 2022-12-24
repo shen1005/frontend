@@ -399,7 +399,7 @@ export default {
                 name: res.data[i].name,
                 productName: res.data[i].productName,
                 time: res.data[i].payTime,
-                star: res.data[i].star,
+                star: (res.data[i].star === -1) ? '未评分' : res.data[i].star
               })
             }
           } else if (this.isSeller) {
